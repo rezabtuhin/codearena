@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --background-color: #F1F1F1;
+    --accent-color: #148ED2;
+    --border-color: #BCBCBC;
+}
+
+body{
+    background: var(--background-color);
+}
+
+.accent-color{
+    background-color: var(--accent-color);
+}
+
+.border-all-custom{
+    border: 2px solid var(--border-color);
+}
+
+.border-top-custom{
+    border-top: 3px solid var(--accent-color);
+}
+
+.text-primary{
+    color: var(--accent-color);
+}
+
+.text-secondary{
+    color: white;
+}
+
+.shadow-custom{
+    box-shadow: 1px 1px 16px -2px rgba(0, 0, 0, 0.25);
+}
+
+.tab-btn[area-selected="true"] .tab-parent{
+    background-color: var(--accent-color)!important;
+    color: white!important;
+}
+
+.tab-btn[area-selected="false"] .tab-parent{
+    background-color: white!important;
+    color: rgb(128, 128, 128) !important;
+}
+
+.banner-img img{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
