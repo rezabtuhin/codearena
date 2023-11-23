@@ -2,37 +2,101 @@
 @section('content')
     @include('admin.components.base')
     <div class="px-5 pt-24 pb-5 sm:ml-64">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                <tr>
-                    <th scope="col" class="px-6 py-3">Problem Name</th>
-                    <th scope="col" class="px-6 py-3">Before 30 mins</th>
-                    <th scope="col" class="px-6 py-3">After 30 mins</th>
-                    <th scope="col" class="px-6 py-3">After 60 mins</th>
-                    <th scope="col" class="px-6 py-3">After 90 mins</th>
-                    <th scope="col" class="px-6 py-3">Unsuccessful hack</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 1</th>
-                    <td class="px-6 py-4">250</td>
-                    <td class="px-6 py-4">230</td>
-                    <td class="px-6 py-4">200</td>
-                    <td class="px-6 py-4">160</td>
-                    <td class="px-6 py-4">-50</td>
-                </tr>
-                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                    <td class="px-6 py-4">300</td>
-                    <td class="px-6 py-4">280</td>
-                    <td class="px-6 py-4">250</td>
-                    <td class="px-6 py-4">240</td>
-                    <td class="px-6 py-4">-80</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <h1 class="font-bold mb-2 text-center text-2xl">@if($contestsNotStarted->isEmpty()) Create a Contest first @endif</h1>
+        @if(!$contestsNotStarted->isEmpty())
+            <form action={{ route('super-admin.question.store') }} method="post">
+                @csrf
+                @method('post')
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                        <select name="contest" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                            <option selected disabled>Choose a contest</option>
+                            @foreach($contestsNotStarted as $contest) @endforeach
+                            <option value={{ $contest->id }}>{{ $contest->name }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+                        <input type="text" name="title" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Problem Name" required>
+                    </div>
+                    <div>
+                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                        <textarea name="description" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-sm" placeholder="Write your rules here..." required></textarea>
+                    </div>
+                    <div>
+                        <label for="hint" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hint</label>
+                        <textarea name="hint" id="hint" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-sm" placeholder="Write your rules here..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Sample Input</label>
+                        <input name="sample_input" type="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-sm cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" aria-describedby="file_input_help" id="file_input" accept="text/plain" required>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">.txt</p>
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Sample Output</label>
+                        <input name="sample_output" type="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-sm cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" aria-describedby="file_input_help" id="file_input" accept="text/plain" required>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">.txt</p>
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Full Input</label>
+                        <input name="full_input" type="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-sm cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" aria-describedby="file_input_help" id="file_input" accept="text/plain" required>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">.txt</p>
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Full Output</label>
+                        <input name="full_output" type="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-sm cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" aria-describedby="file_input_help" id="file_input" accept="text/plain" required>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">.txt</p>
+                    </div>
+
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Memory Limit (Megabytes)</label>
+                        <input type="number" name="memory" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="eg: 512" required>
+                    </div>
+
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time Limit (Seconds)</label>
+                        <input type="number" name="time" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="eg: 2" required>
+                    </div>
+                    
+                    <button type="submit" class="col-span-2 mt-1 p-2 text-white accent-color flex-none" >Create</button>
+                </div>
+            </form>
+
+            <script>
+                $('#description').summernote({
+                    placeholder: 'Write problem description',
+                    tabsize: 2,
+                    height: 100,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ]
+                });
+
+                $('#hint').summernote({
+                    placeholder: 'Add hint if have any',
+                    tabsize: 2,
+                    height: 100,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ]
+                });
+            </script>
+        @endif
     </div>
 @endsection

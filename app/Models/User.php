@@ -62,4 +62,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Contest::class, 'updated_by');
     }
+
+    public function problemCreated(): HasMany
+    {
+        return $this->hasMany(Problem::class, 'created_by');
+    }
+
+    /**
+     * Get the contests updated by this user.
+     */
+    public function problemUpdated(): HasMany
+    {
+        return $this->hasMany(Problem::class, 'updated_by');
+    }
 }

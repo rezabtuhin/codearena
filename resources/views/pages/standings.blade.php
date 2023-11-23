@@ -2,12 +2,12 @@
 @section('content')
     @include('components.navbar')
     <div class="max-w-screen-xl mx-auto p-4">
-        <div class="Greetings p-4 bg-white border-t-4 border-[#148ED2] mb-5">
+        <div class="Greetings p-4 bg-white border-top mb-5">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li class="inline-flex items-center">
                         <a href="#"
-                           class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                           class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
                             <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -30,7 +30,7 @@
                 </ol>
             </nav>
         </div>
-        <div class="p-4 bg-white border-t-4 border-[#148ED2]">
+        <div class="p-4 bg-white border-top">
             <p class="description text-2xl mb-2"><span class=" font-bold">Test contest</span><br>Standings</p>
             <div class="flex justify-between mb-2">
                 <p>

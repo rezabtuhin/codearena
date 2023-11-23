@@ -2,13 +2,17 @@
 @section('content')
     @include('components.navbar')
     <div class="max-w-screen-xl mx-auto p-4">
-        <div class="Greetings p-6 bg-white border-t-4 border-[#148ED2] mb-5">
-            <h5 class="text-2xl">Welcome, @auth
-                    <span
-                        class="font-black">{{ explode(' ', auth()->user()->name)[0] }}</span> {{ implode(' ', array_slice(explode(' ', auth()->user()->name), 1)) }}
-                @endauth</h5>
-        </div>
-        <div class="p-6 bg-white border-t-4 border-[#148ED2] mb-3 grid md:grid-cols-2 sm:grid-cols-2 gap-4">
+        @auth
+        <div class="Greetings p-6 bg-white border-top mb-5">
+            <h5 class="text-2xl">Welcome,
+                    <span class="font-black">
+                        {{ explode(' ', auth()->user()->name)[0] }}
+                    </span>
+                    {{ implode(' ', array_slice(explode(' ', auth()->user()->name), 1)) }}
+                </h5>
+            </div>
+        @endauth
+        <div class="p-6 bg-white border-top mb-3 grid md:grid-cols-2 sm:grid-cols-2 gap-4">
             <h1 class="text-2xl font-bold col-span-2">Running Contests</h1>
             @if ($runningContests->isEmpty())
                 <p class="text-center text-primary text-[20px] font-bold col-span-2">No running contests at the moment.</p>
@@ -62,8 +66,11 @@
                 @endforeach
             @endif
         </div>
-        <div class="p-6 bg-white border-t-4 border-[#148ED2] mb-3 grid md:grid-cols-2 sm:grid-cols-2 gap-4">
+        <div class="p-6 bg-white border-top mb-3 grid md:grid-cols-2 sm:grid-cols-2 gap-4">
             <h1 class="text-2xl font-bold col-span-2">Upcoming Contests</h1>
+            @if($upcomingContests->isEmpty())
+                <p class="text-center text-primary text-[20px] font-bold col-span-2">No upcoming contests at the moment.</p>
+            @endif
             @foreach($upcomingContests as $contest)
                 <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="/contest" class="banner-img">

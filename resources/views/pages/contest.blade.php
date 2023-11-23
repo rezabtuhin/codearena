@@ -2,7 +2,7 @@
 @section('content')
     @include('components.navbar')
     <div class="max-w-screen-xl mx-auto p-4">
-        <div class="Greetings p-4 bg-white border-t-4 border-[#148ED2] mb-5">
+        <div class="Greetings p-4 bg-white border-top mb-5">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li class="inline-flex items-center">
@@ -29,7 +29,7 @@
                 </ol>
             </nav>
         </div>
-        <div class="p-4 bg-white border-t-4 border-[#148ED2] mb-5">
+        <div class="p-4 bg-white border-top mb-5">
             <h1 class="text-3xl font-black mb-3">
                 Test coding test
             </h1>
@@ -87,7 +87,7 @@
 
         </div>
 
-        <div class="p-4 bg-white border-t-4 border-[#148ED2]">
+        <div class="p-4 bg-white border-top">
             <div class="standings flex justify-end mb-4"><a class="text-primary text-[18px] hover:underline" href={{ route('standings') }}>Standings</a>
             </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

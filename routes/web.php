@@ -1,15 +1,18 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CreateProblem;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContestController;
-use App\Http\Controllers\CreateProblem;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\StandingsController;
 use Illuminate\Support\Facades\Route;
 
+Route::group(['middleware' => 'redirectIfAdmin'], function (){
+    Route::get("/", [HomeController::class, 'index'])->name('home');
+});
 Route::group(['middleware' => 'guest'], function (){
     Route::get('/login-register', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('_login');
@@ -34,7 +37,6 @@ Route::prefix('admin')->group(function (){
 });
 
 Route::group(['middleware' => ['auth', 'redirectIfAdmin']], function (){
-    Route::get("/", [HomeController::class, 'index'])->name('home');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get("/contest", [ContestController::class, 'index'])->name('contest');
     Route::get("/contest", [ContestController::class, 'index'])->name('contest');

@@ -2,7 +2,7 @@
 @section('content')
     @include('components.navbar')
     <div class="max-w-screen-xl mx-auto p-4">
-        <div class="Greetings p-4 bg-white border-t-4 border-[#148ED2] mb-5">
+        <div class="Greetings p-4 bg-white border-top mb-5">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li class="inline-flex items-center">
@@ -30,7 +30,7 @@
                 </ol>
             </nav>
         </div>
-        <div class="p-4 bg-white border-t-4 border-[#148ED2] mb-5 grid xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+        <div class="p-4 bg-white border-t-4 border-top mb-5">
             <div class="min-h-[70vh] max-h-[80vh] overflow-y-scroll md:mb-2 sm:mb-2">
                 <h1 class="text-[20px] text-center font-black mb-2">
                     Problem 1
@@ -117,7 +117,7 @@
                             <option value="python">Python</option>
                         </select>
                     </div>
-                    <div class="flex gap-1 items-center">
+                    {{-- <div class="flex gap-1 items-center">
                         <h1 class="text-sm">Theme</h1>
                         <select name="theme" id="theme" class="text-sm p-0.5 accent-color focus:border-white focus:ring-0" onchange="changeTheme()">
                             <option value="monokai">Monokai</option>
@@ -125,7 +125,7 @@
                             <option value="dracula">Dracula</option>
                             <option value="eclipse">eclipse</option>
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
                 <form action="" method="post" class="flex flex-col">
                     <textarea class="codeblocks grow" id="codeblocks"></textarea>
@@ -141,7 +141,7 @@
                         const editor = CodeMirror.fromTextArea(document.getElementById('codeblocks'), {
                             height: "50%",
                             mode: "text/x-java",
-                            theme: "monokai",
+                            theme: "darcula",
                             lineNumbers: true,
                             autoCloseBrackets: true,
                             matchBrackets: true,
