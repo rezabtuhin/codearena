@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('contest_id')->constrained('contests');
             $table->string('title');
-            $table->string('description');
-            $table->string('attachments')->nullable();
-            $table->string('hints')->nullable();
+            $table->text('description');
+            $table->text('hints')->nullable();
             $table->string('sample_input');
             $table->string('sample_output');
             $table->string('actual_input');

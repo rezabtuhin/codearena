@@ -30,26 +30,25 @@
             </nav>
         </div>
         <div class="p-4 bg-white border-top mb-5">
-            <h1 class="text-3xl font-black mb-3">
-                Test coding test
-            </h1>
+            <div style="
+                    background-image: url('{{ asset('storage/contest-banner/'.$contest->banner) }}');
+                    background-size: cover;
+                    background-position: center;
+                    height: 150px;">
+                <div class="w-full h-full overlay flex items-center justify-center">
+                    <h1 class="text-3xl font-black mb-3 text-white">
+                        {{ $contest->name }}
+                    </h1>
+                </div>
+
+            </div>
             <p class="description mb-3">
-                <span class="font-bold">Description: </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Assumenda culpa error fugiat nemo perspiciatis repellat. Aliquam dignissimos dolor ducimus facere
-                impedit ipsam iusto neque nihil odit quas tenetur, velit. Adipisci animi, aut deserunt doloribus dolorum
-                eaque error et ex excepturi fugiat illum inventore itaque laudantium, molestias nam nemo non nostrum
-                optio placeat porro qui, quia quibusdam rerum saepe sed sequi soluta voluptatibus. Assumenda dolor
-                expedita iste iusto, minus nisi nobis pariatur perspiciatis placeat voluptates! Assumenda autem beatae
-                cupiditate ea eaque, eligendi eveniet inventore ipsam magni nobis nostrum nulla possimus quidem quos,
-                tempora ut vel. Aliquid asperiores facere nesciunt quas totam!
+                <span class="font-bold">Description: </span>
+                {!! $contest->description !!}
             </p>
             <p class="description mb-3">
-                <span class="font-bold">Rules: </span> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Accusantium dolorem dolores dolorum expedita, itaque labore minima nobis nostrum optio possimus
-                provident soluta totam ut. Ab asperiores ex facilis nostrum ratione! Accusantium autem dolor doloremque
-                ea et harum magni possimus quam rem sit. Accusantium aut deserunt, eveniet exercitationem laudantium
-                nemo quod reiciendis rem sequi, tempora voluptatem voluptates! Beatae delectus dicta distinctio, eaque,
-                minus necessitatibus numquam placeat quas quibusdam repellendus veniam voluptate.
+                <span class="font-bold">Rules: </span>
+                {!! $contest->rule !!}
             </p>
             <p class="description font-bold mb-2">Point distribution</p>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

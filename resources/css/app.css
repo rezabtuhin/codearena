@@ -55,3 +55,7 @@ body{
 .border-top{
     border-top: 4px solid var(--accent-color);
 }
+
+.overlay{
+    background: rgba(0, 0, 0, 0.5);
+}

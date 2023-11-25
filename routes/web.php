@@ -38,8 +38,7 @@ Route::prefix('admin')->group(function (){
 
 Route::group(['middleware' => ['auth', 'redirectIfAdmin']], function (){
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get("/contest", [ContestController::class, 'index'])->name('contest');
-    Route::get("/contest", [ContestController::class, 'index'])->name('contest');
+    Route::resource('contest', ContestController::class);
     Route::get("/problem", [ProblemController::class, 'index'])->name('problem');
     Route::get("/standings", [StandingsController::class, 'index'])->name('standings');
 });

@@ -2,9 +2,10 @@
 @section('content')
     @include('admin.components.base')
     <div class="px-5 pt-24 pb-5 sm:ml-64">
+        @include('admin.components.alerts')
         <h1 class="font-bold mb-2 text-center text-2xl">@if($contestsNotStarted->isEmpty()) Create a Contest first @endif</h1>
         @if(!$contestsNotStarted->isEmpty())
-            <form action={{ route('super-admin.question.store') }} method="post">
+            <form action={{ route('super-admin.question.store') }} method="post" enctype="multipart/form-data">
                 @csrf
                 @method('post')
                 <div class="grid grid-cols-2 gap-2">
@@ -61,7 +62,11 @@
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time Limit (Seconds)</label>
                         <input type="number" name="time" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="eg: 2" required>
                     </div>
-                    
+                    <div class="flex items-center ps-4 mb-2 border border-gray-200">
+                        <input id="bordered-checkbox-1" type="checkbox" name="visibility_after_contest" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="bordered-checkbox-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Public visibility after contest ends?</label>
+                    </div>
+
                     <button type="submit" class="col-span-2 mt-1 p-2 text-white accent-color flex-none" >Create</button>
                 </div>
             </form>
