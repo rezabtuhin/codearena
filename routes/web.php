@@ -8,6 +8,7 @@ use App\Http\Controllers\ContestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\StandingsController;
+use App\Http\Controllers\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'redirectIfAdmin'], function (){
@@ -39,6 +40,7 @@ Route::prefix('admin')->group(function (){
 Route::group(['middleware' => ['auth', 'redirectIfAdmin']], function (){
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('contest', ContestController::class);
-    Route::get("/problem", [ProblemController::class, 'index'])->name('problem');
+    Route::resource("problems", ProblemController::class);
     Route::get("/standings", [StandingsController::class, 'index'])->name('standings');
+    Route::post("/submit-answer/{problemId}", [SubmissionController::class, 'submit'])->name('submit-answer');
 });

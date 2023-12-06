@@ -57,7 +57,7 @@
                                             clearInterval(x{{ $contest->id }});
                                             document.getElementById('countdown-{{ $contest->id }}').innerHTML = 'Contest has Ended!';
                                         }
-                                    }, 1000);
+                                    }, 0);
 
                                 </script>
                             </p>
@@ -111,7 +111,7 @@
                                         clearInterval(x{{ $contest->id }});
                                         document.getElementById('countdown-{{ $contest->id }}').innerHTML = 'Contest has started!';
                                     }
-                                }, 1000);
+                                }, 0);
 
                             </script>
                         </p>

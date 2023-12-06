@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contest;
 use App\Models\Problem;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,7 +20,7 @@ class CreateProblem extends Controller
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $user = Auth::user();
-        $contestsNotStarted = $user->contestsCreated()->where('start_time', '>', now()->setTimezone('Asia/Dhaka'))->get();
+        $contestsNotStarted = Contest::where('created_by', $user->id)->where('start_time', '>', now()->setTimezone('Asia/Dhaka'))->get();
         return view('admin.contestview', [
             'contestsNotStarted' => $contestsNotStarted,
         ]);

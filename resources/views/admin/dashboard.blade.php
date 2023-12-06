@@ -42,6 +42,7 @@
         </form>
         <script>
             $('#description').summernote({
+                styleWithSpan: false,
                 placeholder: 'Write problem description',
                 tabsize: 2,
                 height: 100,

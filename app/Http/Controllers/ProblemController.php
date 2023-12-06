@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Problem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProblemController extends Controller
 {
@@ -35,7 +37,13 @@ class ProblemController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $problem = Problem::find($id);
+        $sample_input = 'public/problems/'.$problem->sample_input;
+        $sample_output = 'public/problems/'.$problem->sample_output;
+        $sample_input_data = Storage::get($sample_input);
+        $sample_output_data = Storage::get($sample_output);
+//        dd($sample_input_data);
+        return view('pages.problem', compact('problem','sample_input_data', 'sample_output_data'));
     }
 
     /**
