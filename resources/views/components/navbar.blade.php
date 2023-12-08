@@ -6,7 +6,7 @@
         <div class="flex items-center md:order-2">
             <ul class="md:flex text-white gap-5 hidden text-[20px] mr-6">
                 <li class="p-2 bg-gray-400"><a href="/">Contest</a></li>
-                <li class="p-2 bg-gray-400"><a href="/">Problem Set</a></li>
+                <li class="p-2 bg-gray-400"><a href="{{ route('problem-set') }}">Problem Set</a></li>
             </ul>
             @if(auth()->check())
             <button type="button" class="flex mr-3 md:mr-0 text-white rounded-full w-12 h-12 items-center justify-center" style="background: rgba(255, 255, 255, 0.3)" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
@@ -32,12 +32,17 @@
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
+                        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="{{ route('submissions') }}">My Submissions</a>
+                    </li>
+                </ul>
+                <ul class="py-2" aria-labelledby="user-menu-button">
+                    <li>
                         <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href={{ route('logout') }}>Log out</a>
                     </li>
                 </ul>
             </div>
             @else
-            <a href={{ route('login') }} class="p-2 bg-transparent border hover:bg-white hover:text-black transition-all duration-10 text-[20px] text-white">Login</a>
+            <a href="{{ route('login') }}" class="p-2 bg-transparent border hover:bg-white hover:text-black transition-all duration-10 text-[20px] text-white">Login</a>
             @endif
             <button type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center md:hidden" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example">
                 <svg width="40px" height="40px" viewBox="0 -62.5 1149 1149" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">

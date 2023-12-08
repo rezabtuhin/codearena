@@ -21,9 +21,7 @@ class CreateProblem extends Controller
     {
         $user = Auth::user();
         $contestsNotStarted = Contest::where('created_by', $user->id)->where('start_time', '>', now()->setTimezone('Asia/Dhaka'))->get();
-        return view('admin.contestview', [
-            'contestsNotStarted' => $contestsNotStarted,
-        ]);
+        return view('admin.contestview', compact('contestsNotStarted'));
     }
 
     /**

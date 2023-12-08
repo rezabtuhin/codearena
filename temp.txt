@@ -1,0 +1,41 @@
+//        $problems = Problem::where('contest_id', $contest->id)->select('id')->get();
+//        $participants = Submission::where('contest_id', $contest->id)->select('problem_id', 'submitted_by', 'submitted_at', 'verdict')->get();
+//        $latestAcceptedSubmissions = DB::table('submissions')
+//            ->select('submitted_by', 'problem_id', DB::raw('MAX(submitted_at) as latest_accepted'))
+//            ->where('verdict', 'accepted')
+//            ->groupBy('submitted_by', 'problem_id');
+//
+//        // Query to retrieve users who submitted solutions during the contest
+//        // along with the number of wrong submissions for each problem
+//        $standings = DB::table('submissions')
+//            ->select(
+//                'submissions.submitted_by', // Explicitly specify the table for submitted_by
+//                'submissions.problem_id',
+//                DB::raw('COUNT(*) as wrong_submissions'),
+//                DB::raw('MAX(submissions.score) as accepted_score'),
+//                DB::raw('SUM(CASE WHEN submissions.verdict = "accepted" THEN 1 ELSE 0 END) as solved')
+//            )
+//            ->leftJoinSub($latestAcceptedSubmissions, 'latest_accepted_subs', function ($join) {
+//                $join->on('submissions.submitted_by', '=', 'latest_accepted_subs.submitted_by');
+//                $join->on('submissions.problem_id', '=', 'latest_accepted_subs.problem_id');
+//                $join->on('submissions.submitted_at', '=', 'latest_accepted_subs.latest_accepted');
+//            })
+//            ->whereNotNull('submissions.contest_id') // Specify the table for contest_id
+//            ->groupBy('submissions.submitted_by', 'submissions.problem_id')
+//            ->orderByDesc('solved')
+//            ->orderBy('accepted_score')
+//            ->get();
+//
+//        dd($standings);
+        $problems = Problem::where('contest_id', $contest->id)->get();
+        $submissions = array();
+        foreach ($problems as $problem){
+            $participants = Submission::where("contest_id", $contest->id)->where('problem_id', $problem->id)->select('submitted_by')->distinct()->get();
+            $solved = array();
+            foreach ($participants as $participant){
+                $submission = Submission::where('contest_id', $contest->id)->where('problem_id', $problem->id)->where('submitted_by', $participant->submitted_by)->get();
+                $submissions[$problem->id] = $participants;
+            }
+        }
+        dd($submissions);
+//        return view('pages.standings', compact('participants', 'problems', 'contest'));

@@ -6,13 +6,16 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContestController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MySubmissionsController;
 use App\Http\Controllers\ProblemController;
+use App\Http\Controllers\ProblemSetController;
 use App\Http\Controllers\StandingsController;
 use App\Http\Controllers\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'redirectIfAdmin'], function (){
     Route::get("/", [HomeController::class, 'index'])->name('home');
+    Route::get("/problem-set", [ProblemSetController::class, 'index'])->name('problem-set');
 });
 Route::group(['middleware' => 'guest'], function (){
     Route::get('/login-register', [AuthController::class, 'index'])->name('login');
@@ -41,6 +44,7 @@ Route::group(['middleware' => ['auth', 'redirectIfAdmin']], function (){
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('contest', ContestController::class);
     Route::resource("problems", ProblemController::class);
-    Route::get("/standings", [StandingsController::class, 'index'])->name('standings');
-    Route::post("/submit-answer/{problemId}", [SubmissionController::class, 'submit'])->name('submit-answer');
+    Route::get("/standings/{contest}", [StandingsController::class, 'index'])->name('standings');
+    Route::post("/submit-answer/{problem}", [SubmissionController::class, 'submit'])->name('submit-answer');
+    Route::get("/my-submissions", [MySubmissionsController::class, 'index'])->name('submissions');
 });

@@ -42,4 +42,9 @@ class Problem extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class, 'problem_id');
+    }
 }

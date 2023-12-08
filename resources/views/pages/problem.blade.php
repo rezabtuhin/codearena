@@ -83,8 +83,7 @@
                         <div class="flex gap-1 items-center">
                             <label for="language" class="text-sm">Language</label>
                             <select name="language" id="language" class="text-sm p-0.5 accent-color focus:border-white focus:ring-0" onchange="changeLanguage()">
-                                <option value="c">C</option>
-                                <option value="cpp">C++</option>
+                                <option value="py">python</option>
                             </select>
                         </div>
                         {{-- <div class="flex gap-1 items-center">
@@ -110,7 +109,7 @@
                         };
                         const editor = CodeMirror.fromTextArea(document.getElementById('codeblocks'), {
                             height: "50%",
-                            mode: "text/x-csrc",
+                            mode: "text/x-python",
                             theme: "darcula",
                             lineNumbers: true,
                             autoCloseBrackets: true,

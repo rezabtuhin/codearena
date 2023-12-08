@@ -13,8 +13,9 @@
                         <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                         <select name="contest" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                             <option selected disabled>Choose a contest</option>
-                            @foreach($contestsNotStarted as $contest) @endforeach
+                            @foreach($contestsNotStarted as $contest)
                             <option value={{ $contest->id }}>{{ $contest->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div>

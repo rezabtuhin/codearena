@@ -75,4 +75,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Problem::class, 'updated_by');
     }
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class, 'submitted_by');
+    }
 }

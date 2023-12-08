@@ -189,7 +189,7 @@
             @elseif($contest->start_time < now()->setTimezone('Asia/Dhaka') || $contest->end_time > now()->setTimezone('Asia/Dhaka'))
                 <div>
                     <div class="standings flex justify-end mb-4">
-                        <a class="text-primary text-[18px] hover:underline" href={{ route('standings') }}>Standings</a>
+                        <a class="text-primary text-[18px] hover:underline" href={{ route('standings', $contest->id) }}>Standings</a>
                     </div>
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -212,7 +212,16 @@
                                         @endphp
                                     </th>
                                     <td class="px-6 py-4"><a href="{{ route('problems.show', $problem->id) }}" class="text-primary underline">{{ $problem->title }}</a></td>
-                                    <td class="px-6 py-4">N/A</td>
+                                    <td class="px-6 py-4">
+                                        @php
+                                            $solvedBy = \App\Models\Submission::where('contest_id', $contest->id)
+                                            ->where('problem_id', $problem->id)
+                                            ->where('verdict', 1)
+                                            ->distinct('submitted_by')
+                                            ->count();
+                                        @endphp
+                                        {{ $solvedBy }}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

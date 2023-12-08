@@ -38,4 +38,9 @@ class Contest extends Model
     public function underContest() : HasMany{
         return $this->hasMany(Problem::class, 'contest_id');
     }
+
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class, 'contest_id');
+    }
 }

@@ -30,142 +30,76 @@
                 </ol>
             </nav>
         </div>
+        <pre>
+        </pre>
         <div class="p-4 bg-white border-top">
-            <p class="description text-2xl mb-2"><span class=" font-bold">Test contest</span><br>Standings</p>
-            <div class="flex justify-between mb-2">
-                <p>
-                    <label for="per-page-record">Record show per page</label>
-                    <select class="p-0 focus:ring-0" id="per-page-record">
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
-                        <option>50</option>
-                    </select>
-                </p>
-                <a href="" class="text-primary underline">Me</a>
-            </div>
+            <p class="description text-2xl mb-2"><span class=" font-bold">{{ $contest->name }}</span><br>Standings</p>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                <table class="w-full text-[16px] text-left rtl:text-right">
+                    <thead class="text-gray-700 uppercase bg-gray-200">
                     <tr>
-                        <th scope="col" class="px-6 py-3">#</th>
-                        <th scope="col" class="px-6 py-3">Name</th>
+                        <th scope="col" class="px-6 py-3 w-10">#</th>
+                        <th scope="col" class="px-6 py-3">Who</th>
                         <th scope="col" class="px-6 py-3">Solved</th>
-                        <th scope="col" class="px-6 py-3">Tries</th>
                         <th scope="col" class="px-6 py-3">Penalty</th>
-                        <th scope="col" class="px-6 py-3">Score</th>
+                        @php $i = 1; @endphp
+                        @foreach($problems as $problem)
+                            <th scope="col" class="px-6 py-3">
+                                <a href="{{ route('problems.show', $problem) }}" class="text-orange-400 hover:underline">
+                                    Problem {{ $i }}
+                                </a>
+                            </th>
+                            @php $i++; @endphp
+                        @endforeach
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 1</th>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">230</td>
-                        <td class="px-6 py-4">200</td>
-                        <td class="px-6 py-4">160</td>
-                        <td class="px-6 py-4">-50</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Problem 2</th>
-                        <td class="px-6 py-4">300</td>
-                        <td class="px-6 py-4">280</td>
-                        <td class="px-6 py-4">250</td>
-                        <td class="px-6 py-4">240</td>
-                        <td class="px-6 py-4">-80</td>
-                    </tr>
+                    @php $i = 1; @endphp
+                    @foreach($submissions as $submission)
+                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $i }}</th>
+                            <td class="px-6 py-4 uppercase">{{ \App\Models\User::find($submission['user'])->name }}</td>
+                            <td class="px-6 py-4">{{ $submission['totalSolved'] }}</td>
+                            <td class="px-6 py-4">{{ $submission['penalty'] }}</td>
+                            @foreach($problems as $problem)
+                                @foreach($submission['solved'] as $solved)
+                                    @if($problem == $solved['problem'])
+                                        <td class="px-6 py-4">
+                                            <div>
+                                                <p>
+                                                    <span class="text-green-600 font-bold">
+                                                        +{{ $solved['wrong'] > 0 ? $solved['wrong'] : "" }}
+                                                    </span>
+                                                    <span class="text-green-600">
+                                                        <br>
+                                                        @php
+                                                            $timestamp1 = \Carbon\Carbon::parse($contest->start_time);
+                                                            $timestamp2 = \Carbon\Carbon::parse($solved['submitted_at']);
+                                                            $difference = $timestamp1->diff($timestamp2);
+                                                            $hourDifference = $difference->format('%h');
+                                                            $minuteDifference = $difference->format('%I');
+                                                        @endphp
+                                                        {{ $hourDifference }}:{{ $minuteDifference }}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td class="px-6 py-4">
+                                            -
+                                        </td>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        </tr>
+                        @php $i++; @endphp
+
+                    @endforeach
+
                     </tbody>
                 </table>
             </div>
-            <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span class="font-semibold text-gray-900 dark:text-white">1-10</span> of <span class="font-semibold text-gray-900 dark:text-white">1000</span></span>
-                <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
-                    <li>
-                        <a href="#" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                    </li>
-                    <li>
-                        <a href="#" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-                    </li>
-                </ul>
-            </nav>
+
         </div>
 
     </div>
